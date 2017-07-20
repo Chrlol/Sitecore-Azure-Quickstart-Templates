@@ -58,7 +58,7 @@
     },
     "webSqlServerFqdn": {
       "type": "string",
-      "defaultValue": "[parameters('infrastructure').webSqlServerFqdn]"
+      "defaultValue": "[parameters('infrastructure').sqlServerFqdn]"
     },
     "webSqlServerLogin": {
       "type": "string",
@@ -192,10 +192,14 @@
           "Master DB Password": "[parameters('singleMasterSqlDatabasePassword')]",
           "Master Admin Connection String": "[concat('Encrypt=True;TrustServerCertificate=False;Data Source=', variables('sqlServerFqdnTidy'), ',1433;Initial Catalog=',variables('masterDbNameTidy'),';User Id=', parameters('sqlServerLogin'), ';Password=', parameters('sqlServerPassword'), ';')]",
           "Master Connection String": "[concat('Encrypt=True;TrustServerCertificate=False;Data Source=', variables('sqlServerFqdnTidy'), ',1433;Initial Catalog=',variables('masterDbNameTidy'),';User Id=', parameters('singleMasterSqlDatabaseUserName'), ';Password=', parameters('singleMasterSqlDatabasePassword'), ';')]",
+          
+          
           "Web DB User Name": "[parameters('singleWebSqlDatabaseUserName')]",
           "Web DB Password": "[parameters('singleWebSqlDatabasePassword')]",
-          "Web Admin Connection String": "[concat('Encrypt=True;TrustServerCertificate=False;Data Source=', variables('webSqlServerFqdnTidy'), ',1433;Initial Catalog=',variables('webDbNameTidy'),';User Id=', parameters('webSqlServerLogin'), ';Password=', parameters('webSqlServerPassword'), ';')]",
-          "Web Connection String": "[concat('Encrypt=True;TrustServerCertificate=False;Data Source=', variables('webSqlServerFqdnTidy'), ',1433;Initial Catalog=',variables('webDbNameTidy'),';User Id=', parameters('singleWebSqlDatabaseUserName'), ';Password=', parameters('singleWebSqlDatabasePassword'), ';')]",
+          "Web Admin Connection String": "[concat('Encrypt=True;TrustServerCertificate=False;Data Source=', variables('sqlServerFqdnTidy'), ',1433;Initial Catalog=',variables('webDbNameTidy'),';User Id=', parameters('sqlServerLogin'), ';Password=', parameters('sqlServerPassword'), ';')]",
+          "Web Connection String": "[concat('Encrypt=True;TrustServerCertificate=False;Data Source=', variables('sqlServerFqdnTidy'), ',1433;Initial Catalog=',variables('webDbNameTidy'),';User Id=', parameters('singleWebSqlDatabaseUserName'), ';Password=', parameters('singleWebSqlDatabasePassword'), ';')]",
+          
+          
           "Reporting DB User Name": "[parameters('singleReportingSqlDatabaseUserName')]",
           "Reporting DB Password": "[parameters('singleReportingSqlDatabasePassword')]",
           "Reporting Admin Connection String": "[concat('Encrypt=True;TrustServerCertificate=False;Data Source=', variables('sqlServerFqdnTidy'), ',1433;Initial Catalog=',variables('repDbNameTidy'),';User Id=', parameters('sqlServerLogin'), ';Password=', parameters('sqlServerPassword'), ';')]",
